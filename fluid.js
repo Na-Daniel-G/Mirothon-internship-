@@ -44,3 +44,49 @@ window.addEventListener('mousemove', (e) => {
         dens[index] += 100;           // Add "smoke"
     }
 });
+
+function render() {
+    // 1. Clear the background
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const cellWidth = canvas.width / N;
+    const cellHeight = canvas.height / N;
+
+    // 2. Loop through the grid (skipping the boundary cells)
+    for (let i = 1; i <= N; i++) {
+        for (let j = 1; j <= N; j++) {
+            let d = dens[IX(i, j)]; // Get density at this cell
+            
+            if (d > 0) {
+                // Map density to a white/blue color
+                // Math.min(d, 255) ensures we don't go over the max color value
+                let brightness = Math.min(d, 255);
+                ctx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness + 50})`;
+                
+                // Draw the cell
+                ctx.fillRect((i - 1) * cellWidth, (j - 1) * cellHeight, cellWidth + 1, cellHeight + 1);
+            }
+        }
+    }
+}
+
+function fade() {
+    for (let i = 0; i < size; i++) {
+        dens[i] *= 0.99; // Slowly "evaporate" the smoke every frame
+        u[i] *= 0.99;    // Friction: Slow down the wind speed
+        v[i] *= 0.99;
+    }
+}
+
+function step() {
+    // This is where the Navier-Stokes math will eventually go
+    // For now, we just fade and render
+    fade();
+    render();
+    
+    requestAnimationFrame(step);
+}
+
+// Start the loop!
+step();
