@@ -1,18 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Dynamics Sim</title>
-    <style>
-        body { margin: 0; background: #000; overflow: hidden; color: white; font-family: sans-serif; }
-        canvas { display: block; image-rendering: pixelated; }
-        .ui { position: absolute; top: 10px; left: 10px; pointer-events: none; }
-    </style>
-</head>
 <body>
-    <div class="ui">Air Dynamics: Click and Drag</div>
-    <canvas id="canvas"></canvas>
-    <script src="fluid.js"></script>
+    <nav class="navbar">
+        <div class="logo">FluidLab</div>
+        <div class="nav-links">
+            <a href="#" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('sim')">Simulation</a>
+        </div>
+    </nav>
+
+    <section id="home-page" class="page active">
+        <div class="hero">
+            <h1>Experience the Physics of Flow</h1>
+            <p>A high-performance fluid dynamics playground built with JavaScript.</p>
+            <button class="cta-button" onclick="showPage('sim')">Launch Simulation</button>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>Real-time Physics</h3>
+                <p>Based on the Navier-Stokes equations for realistic gas behavior.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Custom Obstacles</h3>
+                <p>Build walls and see how they deflect the flow in real-time.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sim-page" class="page">
+        <canvas id="canvas"></canvas>
+        <div class="controls">
+            <h3>Simulation Controls</h3>
+            <label>Fade Speed</label>
+            <input type="range" id="fadeSlider" min="0.9" max="0.999" step="0.001" value="0.99">
+            
+            <label>Input Force</label>
+            <input type="range" id="forceSlider" min="1" max="50" value="10">
+            
+            <label>Smoke Color</label>
+            <input type="range" id="hueSlider" min="0" max="360" value="200">
+            
+            <button id="modeBtn">Mode: Adding Smoke</button>
+            <button id="perfBtn">Performance: Normal</button>
+            <button id="clearBtn" style="background: #622;">Reset Simulation</button>
+            <button onclick="showPage('home')" style="background: #444;">Back to Home</button>
+        </div>
+    </section>
 </body>
-</html>

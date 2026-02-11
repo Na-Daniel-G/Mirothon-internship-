@@ -1,0 +1,79 @@
+:root {
+    --primary: #3498db;
+    --bg: #0a0a0a;
+    --card: #1a1a1a;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Page Management */
+.page {
+    display: none;
+    min-height: 100vh;
+}
+.page.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(circle at center, #1a2a3a 0%, #0a0a0a 100%);
+}
+
+.cta-button {
+    padding: 15px 40px;
+    font-size: 18px;
+    background: var(--primary);
+    border: none;
+    color: white;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Features */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px;
+}
+
+.feature-card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 15px;
+    width: 300px;
+    border: 1px solid #333;
+}
